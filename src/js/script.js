@@ -5,6 +5,7 @@ const select = {
         bookTemplate: '#template-book',
         bookList: '.books-list',
         bookImage: '.book__image',
+        bookPanel: '.books-panel',
     },
     class: {
         favorite: 'favorite',
@@ -39,11 +40,10 @@ function initActions() {
         //preventDefault
         event.preventDefault();
         //check whether event.target.offsetParent owns class .book__image
-        if (event.target.offsetParent.classList.contains('.book__image')) {
+        const book = event.target.offsetParent;
+        if (book.classList.contains('.book__image')) {
             //get book's id from data-id
             const bookId = event.target.offsetParent.getAttribute('data-id');
-            //const book = ????
-            //console.log(bookId);
             // add id to favoriteBooks
             if (!favoriteBooks.includes(bookId)) {
                 book.classList.add(select.class.favorite);

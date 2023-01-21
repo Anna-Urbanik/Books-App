@@ -41,7 +41,8 @@ function initActions() {
         event.preventDefault();
         //check whether event.target.offsetParent owns class .book__image
         const book = event.target.offsetParent;
-        if (book.classList.contains('.book__image')) {
+        console.log('book', book);
+        if (book.classList.contains('book__image')) {
             //get book's id from data-id
             const bookId = event.target.offsetParent.getAttribute('data-id');
             // add id to favoriteBooks

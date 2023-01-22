@@ -10,6 +10,7 @@ const select = {
     class: {
         favorite: 'favorite',
     },
+    form: '.filters',
 };
 
 const templates = {
@@ -17,6 +18,8 @@ const templates = {
 };
 
 const favoriteBooks = [];
+
+const filters = [];
 
 function render() {
     for (const book of dataSource.books) {
@@ -56,6 +59,22 @@ function initActions() {
             }
         }
     })
+
+    const form = document.querySelector(select.form);
+
+    form.addEventListener('click', function (event) {
+        console.log('single click', event);
+        if (event.target.tagName == 'INPUT' && event.target.type == 'checkbox' && event.target.name == 'filter') {
+            console.log(event.target);
+            if (event.target.checked) {
+                filters.push(event.target.value);
+                console.log('Adding filters', filters);
+            } else {
+                filters.splice(filters.indexOf(event.target.value), 1);
+                console.log('Left in filters', filters);
+            }
+        }
+    });
 
 }
 

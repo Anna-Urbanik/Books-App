@@ -9,6 +9,7 @@ const select = {
     },
     class: {
         favorite: 'favorite',
+        hidden: 'hidden',
     },
     form: '.filters',
 };
@@ -72,10 +73,35 @@ function initActions() {
             } else {
                 filters.splice(filters.indexOf(event.target.value), 1);
                 console.log('Left in filters', filters);
+
+                filterBooks();
             }
         }
     });
 
+
+}
+
+function filterBooks() {
+
+    for (const book of dataSource.books) {
+        let shouldBeHidden = false;
+
+        for (const filter of filters) {
+            if (!book.details[filter]) {
+                shouldBeHidden = true;
+                break;
+            }
+        }
+        if (shouldBeHidden == true) {
+            const bookImage = document.querySelector('.book__image[data-id="' + book.id + '"]');
+            bookImage.classList.add(select.class.hidden);
+            console.log('hidden upon click', bookImage);
+        } else if (shouldBeHidden == false) {
+            const bookImage = document.querySelector('.book__image[data-id="' + book.id + '"]');
+            bookImage.classList.remove(select.class.hidden);
+        }
+    }
 }
 
 

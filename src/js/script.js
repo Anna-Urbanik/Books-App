@@ -24,6 +24,10 @@ const filters = [];
 
 function render() {
   for (const book of dataSource.books) {
+    //generate a new constat for a rating stripe
+    book.ratingBgc = determineRatingBgc(book.rating);
+    book.ratingWidth = book.rating * 10;
+
     // generate HTML based on the template and on a given book's data
     const generatedHTML = templates.menuBooks(book);
     // generate DOM element
@@ -98,6 +102,26 @@ function filterBooks() {
       bookImage.classList.remove(select.class.hidden);
     }
   }
+}
+
+function determineRatingBgc(rating) {
+
+  let ratingBgc = '';
+
+  if (rating < 6) {
+    ratingBgc = 'linear-gradient(to bottom,  #fefcea 0%, #f1da36 100%)';
+  } else if (rating > 6 && rating <= 8) {
+    ratingBgc = 'linear-gradient(to bottom, #b4df5b 0%,#b4df5b 100%)';
+  } else if (rating > 8 && rating <= 9) {
+    ratingBgc = 'linear-gradient(to bottom, #299a0b 0%, #299a0b 100%)';
+  } else if (rating > 9) {
+    ratingBgc = 'linear-gradient(to bottom, #ff0084 0%,#ff0084 100%)';
+  }
+
+  return ratingBgc;
+  //elem.style.background 
+  //ratingWidth
+
 }
 
 

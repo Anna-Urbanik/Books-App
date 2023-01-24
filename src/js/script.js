@@ -18,6 +18,23 @@ const templates = {
   menuBooks: Handlebars.compile(document.querySelector(select.templateOf.bookTemplate).innerHTML),
 };
 
+class BooksList {
+  constructor() {
+    //this.favoriteBooks = [];
+    //this.filters = [];
+
+    //this.initData();
+    //this.getElements();
+    //this.initActions();
+    //this.filterBooks();
+    //this.determineRatingBgc();
+
+  }
+
+  /* initData() {
+    this.data = dataSource.books;
+  }*/
+
 const favoriteBooks = [];
 
 const filters = [];
@@ -119,12 +136,14 @@ function determineRatingBgc(rating) {
   }
 
   return ratingBgc;
-  //elem.style.background 
-  //ratingWidth
-
 }
 
 
 render();
 
 initActions();
+
+};
+
+const app = new BooksList();
+
